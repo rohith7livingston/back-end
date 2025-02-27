@@ -6,6 +6,8 @@ const { Server } = require('socket.io'); // Import Socket.io
 const summarizeText = require("./Controller/Summarizer");
 const NoteModel = require("./Models/NotesModel");
 const collabModel = require('./Models/CollabModel');
+require("dotenv").config();
+console.log("API Key:", process.env.HUGGINGFACE_API_KEY); // Debugging
 
 const app = express();
 const server = http.createServer(app); // Create an HTTP server

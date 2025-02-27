@@ -1,3 +1,4 @@
+require("dotenv").config();
 const axios = require("axios");
 
 const summarizeText = async (text) => {
@@ -15,14 +16,13 @@ const summarizeText = async (text) => {
     url: "https://api-inference.huggingface.co/models/facebook/bart-large-cnn",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer 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",
+      Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
     },
     data: data,
   };
 
   try {
     const res = await axios.request(config);
-    // Assuming the Hugging Face API returns an array with one object having summary_text
     return res.data[0].summary_text;
   } catch (error) {
     console.log("Summarizer error:", error.message);
